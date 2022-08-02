@@ -1,0 +1,16 @@
+{
+    "name": "RST2022: Script",
+    "build": {
+        "dockerfile": "./Dockerfile.dev"
+    },
+    "settings": {
+        "terminal.integrated.profiles.linux": {
+            "ash": {
+                "path": "/bin/ash"
+            }
+        }
+    },
+    "extensions": [
+		"denoland.vscode-deno"
+	]
+}

@@ -1,0 +1,8 @@
+{
+  "tasks": {
+    "script": "deno run --allow-net --allow-read --allow-env script.ts"
+  },
+  "compilerOptions": {
+    "strict": true
+  }
+}

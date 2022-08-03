@@ -11,5 +11,13 @@
 ## Run script
 
 ```sh
+deno task script
+```
+
+_or_
+
+```sh
 deno run --allow-net --allow-read --allow-env script.ts
 ```
+
+See also `deno.json`

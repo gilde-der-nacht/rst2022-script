@@ -2,11 +2,11 @@
 
 ## Prerequisite
 
-* Deno
+- Deno
 
 ## Preparation
 
-* Copy `.env.example` to `.env` and fill in the variables
+- Copy `.env.example` to `.env` and fill in the variables
 
 ## Run script
 

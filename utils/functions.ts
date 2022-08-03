@@ -1,5 +1,5 @@
-import { Entry } from "./_types.ts";
-import { config as dotEnvConfig } from "https://deno.land/x/dinoenv@v1.1.0/mod.ts";
+import { dotEnvConfig } from "./deps.ts";
+import { Entry } from "./types.ts";
 
 export function getDotEnvVariables(
   path = ".env",

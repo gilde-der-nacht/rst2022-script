@@ -8,8 +8,8 @@ import {
   getNumberOfPeople,
   getWorkshops,
   hideMail,
-} from "./utils/_functions.ts";
-import type { CleanedData, Entry } from "./utils/_types.ts";
+} from "./utils/functions.ts";
+import type { CleanedData, Entry } from "./utils/types.ts";
 
 const { USERNAME, PASSWORD, URL } = getDotEnvVariables();
 

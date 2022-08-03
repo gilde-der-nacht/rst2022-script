@@ -3,7 +3,7 @@ import { CleanedData, Entry } from "./utils/_types.ts";
 import { USERNAME, PASSWORD, URL } from "./utils/_vars.ts";
 
 const headers = new Headers();
-headers.set('Authorization', 'Basic ' + btoa(USERNAME + ":" + PASSWORD));
+headers.set("Authorization", "Basic " + btoa(USERNAME + ":" + PASSWORD));
 
 const response = await fetch(URL, { headers });
 const data: Entry[] = await response.json();

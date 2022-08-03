@@ -9,7 +9,7 @@ import {
   getWorkshops,
   hideMail,
 } from "./utils/_functions.ts";
-import { CleanedData, Entry } from "./utils/_types.ts";
+import type { CleanedData, Entry } from "./utils/_types.ts";
 
 const { USERNAME, PASSWORD, URL } = getDotEnvVariables();
 

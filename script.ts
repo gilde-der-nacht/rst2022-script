@@ -1,6 +1,7 @@
-import { comesOnSaturday, comesOnSunday, filterTestsAndDuplicates, getCatering, getInterests, getNumberOfPeople, getWorkshops, hideMail } from "./utils/_functions.ts";
+import { comesOnSaturday, comesOnSunday, filterTestsAndDuplicates, getCatering, getDotEnvVariables, getInterests, getNumberOfPeople, getWorkshops, hideMail } from "./utils/_functions.ts";
 import { CleanedData, Entry } from "./utils/_types.ts";
-import { USERNAME, PASSWORD, URL } from "./utils/_vars.ts";
+
+const { USERNAME, PASSWORD, URL } = getDotEnvVariables();
 
 const headers = new Headers();
 headers.set("Authorization", "Basic " + btoa(USERNAME + ":" + PASSWORD));
@@ -139,5 +140,6 @@ cleanedData.forEach(({
     aggr.gameRounds += numberOfRounds;
 
 })
+
 
 console.log(aggr);

@@ -1,7 +1,29 @@
 import { Entry } from "./_types.ts";
-import { TEST_ADDRESSES } from "./_vars.ts";
+import { config as dotEnvConfig } from "https://deno.land/x/dinoenv@v1.1.0/mod.ts";
+
+export function getDotEnvVariables(path = ".env"): { USERNAME: string, PASSWORD: string, URL: string, TEST_ADDRESSES: string[] } {
+    dotEnvConfig({ path }); // remove redundant path option when https://github.com/crewdevio/dino_env/pull/2 gets merged/resolved
+    const USERNAME = Deno.env.get("USERNAME");
+    if (typeof USERNAME === "undefined") {
+        throw new Error("Missing USERNAME");
+    }
+    const PASSWORD = Deno.env.get("PASSWORD");
+    if (typeof PASSWORD === "undefined") {
+        throw new Error("Missing PASSWORD");
+    }
+    const URL = Deno.env.get("URL");
+    if (typeof URL === "undefined") {
+        throw new Error("Missing URL");
+    }
+    const TEST_ADDRESSES = Deno.env.get("TEST_ADDRESSES");
+    if (typeof TEST_ADDRESSES === "undefined") {
+        throw new Error("Missing TEST_ADDRESSES");
+    }
+    return { USERNAME, PASSWORD, URL, TEST_ADDRESSES: TEST_ADDRESSES.split(",") };
+}
 
 export function filterTestsAndDuplicates(entries: Entry[]): Entry[] {
+    const { TEST_ADDRESSES } = getDotEnvVariables();
     const map: { [_: string]: Entry } = {};
     entries
         .filter(entry => typeof entry.privateBody.intro === "undefined")

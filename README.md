@@ -6,10 +6,10 @@
 
 ## Preparation
 
-* Rename `/utils/_vars.demo.ts` to `/utils/_vars.ts` and fill in the variables
+* Copy `.env.example` to `.env` and fill in the variables
 
 ## Run script
 
 ```sh
-deno run --allow-net script.ts
+deno run --allow-net --allow-read --allow-env script.ts
 ```

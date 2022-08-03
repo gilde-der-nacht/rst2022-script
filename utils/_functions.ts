@@ -86,7 +86,7 @@ export function getNumberOfPeople(
     companion1: "",
     companion2: "",
   },
-) {
+): number {
   let counter = 1;
   if (privateBody?.companion1 && privateBody?.companion1?.trim().length > 0) {
     counter++;
@@ -102,7 +102,7 @@ export function comesOnSaturday(privateBody: {
   timeSlotSaturday2?: boolean;
   timeSlotSaturday3?: boolean;
   timeSlotSaturday4?: boolean;
-}) {
+}): boolean {
   return (privateBody.timeSlotSaturday1 || privateBody.timeSlotSaturday2 ||
     privateBody.timeSlotSaturday3 || privateBody.timeSlotSaturday4) ?? false;
 }
@@ -111,7 +111,7 @@ export function comesOnSunday(privateBody: {
   timeSlotSunday1?: boolean;
   timeSlotSunday2?: boolean;
   timeSlotSunday3?: boolean;
-}) {
+}): boolean {
   return (privateBody.timeSlotSunday1 || privateBody.timeSlotSunday2 ||
     privateBody.timeSlotSunday3) ?? false;
 }
@@ -122,7 +122,7 @@ export function getInterests(privateBody: {
   horror?: boolean;
   modern?: boolean;
   scifi?: boolean;
-}) {
+}): string[] {
   return Object.entries({
     Crime: privateBody.crime ?? false,
     Fantasy: privateBody.fantasy ?? false,

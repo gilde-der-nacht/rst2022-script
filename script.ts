@@ -34,8 +34,8 @@ const cleanedData: CleanedData[] = dataWithoutTestsAndDuplicates
       wantsToGuide: entry.privateBody.likeToMaster ?? false,
       numberOfRounds: entry.privateBody.gameRounds?.length ?? 0,
       helpAtKioskInHours: entry.privateBody?.kioskDuration ?? 0,
-      willAttendOnSaturday: comesOnSaturday(entry.privateBody) ?? false,
-      willAttendOnSunday: comesOnSunday(entry.privateBody) ?? false,
+      willAttendOnSaturday: comesOnSaturday(entry.privateBody),
+      willAttendOnSunday: comesOnSunday(entry.privateBody),
       catering: getCatering(entry.privateBody.catering),
       workshops: getWorkshops(
         entry.privateBody.workshop1,

@@ -1,3 +1,13 @@
+export type GameRound = {
+  active: boolean;
+  duration: number;
+  id: string;
+  maxPlayerCount: number;
+  minPlayerCount: number;
+  name: string;
+  repetition: number;
+};
+
 export type Entry = {
   identification: string;
   timestamp: string;
@@ -11,7 +21,7 @@ export type Entry = {
     companion2?: string;
     crime?: boolean;
     fantasy?: boolean;
-    gameRounds?: Record<never, never>[];
+    gameRounds?: GameRound[];
     horror?: boolean;
     kioskDuration?: number;
     likeToMaster?: boolean;
@@ -32,6 +42,14 @@ export type Entry = {
   };
 };
 
+export type CleanedGameRound = {
+  name: string;
+  duration: number;
+  maxPlayerCount: number;
+  minPlayerCount: number;
+  repetition: [number, string];
+};
+
 export type CleanedData = {
   id: string;
   timestamp: string;
@@ -41,7 +59,7 @@ export type CleanedData = {
   wantsToPlay: boolean;
   interests: string[];
   wantsToGuide: boolean;
-  numberOfRounds: number;
+  gameRounds: CleanedGameRound[];
   helpAtKioskInHours: number;
   willAttendOnSaturday: boolean;
   willAttendOnSunday: boolean;

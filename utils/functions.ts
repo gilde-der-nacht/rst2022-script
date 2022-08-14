@@ -1,5 +1,5 @@
 import { dotEnvConfig } from "./deps.ts";
-import { Entry } from "./types.ts";
+import type { CleanedGameRound, Entry, GameRound } from "./types.ts";
 
 export function getDotEnvVariables(
   path = ".env",
@@ -132,4 +132,27 @@ export function getInterests(privateBody: {
   })
     .filter(([_, value]) => value)
     .map(([key, _]) => key);
+}
+
+export function getGameRounds(rounds: GameRound[]): CleanedGameRound[] {
+  function getGameRoundRepetition(int: number): [number, string] {
+    switch (int) {
+      case 0:
+        return [0, "einmalig"];
+      case 1:
+        return [1, "einmal pro Tag"];
+      case 2:
+        return [2, "mehrmals"];
+      default:
+        return [9, "Ungültig"];
+    }
+  }
+
+  return rounds.filter((r) => r.active).map((r) => ({
+    name: r.name,
+    minPlayerCount: r.minPlayerCount,
+    maxPlayerCount: r.maxPlayerCount,
+    duration: r.duration,
+    repetition: getGameRoundRepetition(r.repetition),
+  }));
 }

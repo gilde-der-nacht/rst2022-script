@@ -4,12 +4,13 @@ import {
   filterTestsAndDuplicates,
   getCatering,
   getDotEnvVariables,
+  getGameRounds,
   getInterests,
   getNumberOfPeople,
   getWorkshops,
   hideMail,
 } from "./utils/functions.ts";
-import type { CleanedData, Entry } from "./utils/types.ts";
+import type { CleanedData, CleanedGameRound, Entry } from "./utils/types.ts";
 
 const { USERNAME, PASSWORD, URL } = getDotEnvVariables();
 
@@ -32,7 +33,7 @@ const cleanedData: CleanedData[] = dataWithoutTestsAndDuplicates
       wantsToPlay: entry.privateBody.likeToPlay ?? false,
       interests: getInterests(entry.privateBody),
       wantsToGuide: entry.privateBody.likeToMaster ?? false,
-      numberOfRounds: entry.privateBody.gameRounds?.length ?? 0,
+      gameRounds: getGameRounds(entry.privateBody.gameRounds || []),
       helpAtKioskInHours: entry.privateBody?.kioskDuration ?? 0,
       willAttendOnSaturday: comesOnSaturday(entry.privateBody),
       willAttendOnSunday: comesOnSunday(entry.privateBody),
@@ -68,7 +69,6 @@ const aggr = {
     "Nein, ich werde für meine Verpflegung selbst sorgen": 0,
     "Anmeldung noch nicht begonnen": 0,
   },
-  gameRounds: 0,
   days: {
     saturday: 0,
     sunday: 0,
@@ -79,6 +79,8 @@ const aggr = {
     "Warum spiele ich überhaupt Rollenspiele?": 0,
     "Spielerischer Weltenbau": 0,
   },
+  numberOfGameRounds: 0,
+  gameRounds: [] as CleanedGameRound[],
 };
 
 cleanedData.forEach(({
@@ -86,7 +88,7 @@ cleanedData.forEach(({
   wantsToPlay,
   interests,
   wantsToGuide,
-  numberOfRounds,
+  gameRounds,
   helpAtKioskInHours,
   willAttendOnSaturday,
   willAttendOnSunday,
@@ -152,7 +154,8 @@ cleanedData.forEach(({
   if (willAttendOnSunday) {
     aggr.days.sunday += people;
   }
-  aggr.gameRounds += numberOfRounds;
+  aggr.numberOfGameRounds += gameRounds.length;
+  aggr.gameRounds.push(...gameRounds);
 });
 
 console.log(aggr);
